@@ -93,7 +93,7 @@ public class LoginPanel extends JPanel implements ActionListener{
 				super.mouseClicked(e);
 				 try {
 					Runtime.getRuntime().exec(
-							 "cmd   /c   start   https://www.baidu.com ");
+							 "cmd   /c   start   https://github.com/xubuhui/snakename ");
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

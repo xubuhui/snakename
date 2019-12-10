@@ -102,6 +102,7 @@ public class ButtonPanel extends JPanel implements ActionListener{
 		Config.isLive=true;
 //		Config.re=true;
 		snakeFrame.setVisible(false);
+		snakeFrame.snakePanel.player.close();
 		snakeFrame.snakePanel.SnakeThread.stop();
 		
 		new SnakeFrame();

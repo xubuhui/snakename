@@ -7,6 +7,9 @@ import java.awt.Image;
 import java.awt.TrayIcon.MessageType;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,16 +21,19 @@ import com.jt.po.Snake;
 import com.jt.util.Config;
 import com.jt.util.ImageUtil;
 
+import javazoom.jl.player.Player;
+
 //游戏面板
 public class SnakePanel extends JPanel implements KeyListener{
 
 	Food food =new Food();
 	Snake snake =new Snake(food);
 	SnakeThread SnakeThread=new SnakeThread();//创建贪吃蛇移动的对象
+
 	Font font=new Font("黑体",Font.BOLD,30);//字体对象
 	Image bg_game=ImageUtil.getImage("img/bg_game.jpg");
 	int speed=400;
-	
+	public static Player player = null;
 	
 	public SnakePanel() {
 		//初始化面板信息
@@ -38,7 +44,8 @@ public class SnakePanel extends JPanel implements KeyListener{
 		//启动蛇移动的线程
 	
 		SnakeThread.start();
-		
+//		
+	
 	}
 	//初始化面板信息
 	private void initPanel() {
@@ -93,7 +100,12 @@ public class SnakePanel extends JPanel implements KeyListener{
 		@Override
 		public void run() {
 			super.run();
+			new Thread(()->{
+				playM();
+			}).start();
 			while(Config.isLive) {
+				
+				
 				while(Config.pause) {
 					System.out.println("暂停");
 				}
@@ -128,11 +140,45 @@ public class SnakePanel extends JPanel implements KeyListener{
 			}
 			
 			if(!Config.isLive) {
+				
 				JOptionPane.showMessageDialog(SnakePanel.this, "游戏结束", "消息", JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
 	
 
+	}
+	
+//	class SnakeMusic extends SnakeThread{
+//		
+//		@Override
+//		public void run() {
+//			// TODO Auto-generated method stub
+//			super.run();
+//			playM();
+//			
+//		}
+//	}
+	
+	public void playM() {
+		try {
+			//声明一个File对象
+			File mp3 = new File("bgm/DV.mp3");
+			
+			//创建一个输入流
+			FileInputStream fileInputStream = new FileInputStream(mp3);
+			
+			//创建一个缓冲流
+			BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
+			
+			//创建播放器对象，把文件的缓冲流传入进去
+			player = new Player(bufferedInputStream);
+			
+			//调用播放方法进行播放
+			player.play();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	//当键已释放的时候调用

@@ -1,14 +1,21 @@
 package com.jt.frame;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import com.jt.panel.LoginPanel;
 import com.jt.util.ImageUtil;
 
+import javazoom.jl.player.Player;
+
 public class LoginFrame extends BaseFrame{
 	
 	LoginPanel loginPanel =new LoginPanel(this);
+
 //	SnakeFrame snakeFrame;
 	
 	//添加无参的构造方法，用于创建构造窗体
@@ -36,5 +43,6 @@ public class LoginFrame extends BaseFrame{
 	public static void main(String[] args) {
 		
 		new LoginFrame();
+		
 	}
 }
