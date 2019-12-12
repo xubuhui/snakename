@@ -19,10 +19,11 @@ import com.jt.util.Config;
 public class RankFrame extends BaseFrame{
 	
 	RankPanel rankPanel =new RankPanel();//创建面板实例
- 
+	SnakeFrame snakeFrame;
 	
 	//创建窗体
-	public RankFrame() {
+	public RankFrame(SnakeFrame snakeFrame) {
+		this.snakeFrame=snakeFrame;
 		initFrame();
 		//添加组件
 		addComponents();
@@ -34,6 +35,7 @@ public class RankFrame extends BaseFrame{
 			public void windowClosing(WindowEvent e) {  
 			super.windowClosing(e);  
 			Config.pause=false;
+			snakeFrame.setVisible(true);
 			 }  
 			  
 			});  

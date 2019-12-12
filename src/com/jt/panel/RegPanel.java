@@ -61,11 +61,14 @@ public class RegPanel extends JPanel implements ActionListener{
 	//初始化组件
 	private void initComponents() {
 		// TODO Auto-generated method stub
-		bg_login =ImageUtil.getImage("img/bg_login.jpg");
+		bg_login =ImageUtil.getImage("img/bg4.jpg");
 		//初始化文本，文本框，密码款，按钮
 		lbl_username=new JLabel("用户    名");
 		lbl_password =new JLabel("密	        码");
 		lbl_repassword =new JLabel("确认密码");
+		lbl_username.setForeground(Color.cyan);
+		lbl_password.setForeground(Color.cyan);
+		lbl_repassword.setForeground(Color.cyan);
 		tf_username =new JTextField(16);//设置文本框宽度
 		pf_password =new JPasswordField(16);
 		pf_repassword =new JPasswordField(16);
@@ -110,7 +113,7 @@ public class RegPanel extends JPanel implements ActionListener{
 		super.paintComponent(g);
 		//设置背景色
 		g.drawImage(bg_login, 0, 0, this);
-		
+		 	
 	}
 	//按钮单击调用方法
 	@Override

@@ -223,7 +223,7 @@ public class Snake {
 			default:
 				break;
 	    }
-	    	a=false;	
+	    	  a=false;	
 		}
 		
 		

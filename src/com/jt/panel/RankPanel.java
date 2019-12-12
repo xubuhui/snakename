@@ -25,7 +25,7 @@ import com.jt.vo.RankVo;
  */
 public class RankPanel extends JPanel{
 	
-	Image bg_rank =ImageUtil.getImage("img/bg_rank.jpg");
+	Image bg_rank =ImageUtil.getImage("img/bg4.jpg");
 	Font font=new Font("楷体",Font.BOLD,18);
 	
 	JTable table;//表格
@@ -88,6 +88,7 @@ public class RankPanel extends JPanel{
 		table.setBounds(100,180,500,300);
 		//设置字体
 		table.setFont(font);
+		table.setForeground(Color.cyan);
 		//设置行高
 		table.setRowHeight(40);
 		//设置不可编辑

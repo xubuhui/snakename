@@ -21,7 +21,7 @@ public class UserDao {
 	//参数：
 	//返回值：
 
-	User user=null;
+	static User user=null;
 	
 
 	public User login(String username,String password) {
@@ -71,12 +71,46 @@ public class UserDao {
 //		
 //		return 0;
 //	}
+	public static int insertTime() {
+		Connection connection =null;
+		PreparedStatement pstmt = null;
+		int rs1=0;
+		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
+		connection = DBUtil.getConnection();
+		String sql="update user set lasttime = ? where id = ?";
+		try {
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setString(1,formatter.format(new Date(System.currentTimeMillis())));
+			pstmt.setInt(2,user.getId());
+			rs1 = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				pstmt.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return rs1;
+		
+	}
+	
 	public static int insertData(int score,int userId) {
 		Connection connection =null;
 		PreparedStatement pstmt = null;
 		int rs2=0;
 		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
-		 connection = DBUtil.getConnection();
+		connection = DBUtil.getConnection();
 		String sql="INSERT INTO rank (score, time,userId) VALUES (?, ?,?)";
 		try {
 			pstmt = connection.prepareStatement(sql);

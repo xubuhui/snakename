@@ -3,6 +3,7 @@ package com.jt.panel;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,10 +19,9 @@ public class ButtonPanel extends JPanel implements ActionListener{
 	JButton btn_continue;//继续按钮
 	JButton btn_restart;//重新开始按钮
 	JButton btn_rank;//排行按钮
+	JButton btn_admin;//后台
 	SnakeFrame snakeFrame;
 //	public boolean pause = false;
-	
-	
 	
 	public ButtonPanel(SnakeFrame snakeFrame) {
 		this.snakeFrame =snakeFrame;
@@ -39,6 +39,10 @@ public class ButtonPanel extends JPanel implements ActionListener{
 		this.add(btn_continue);
 		this.add(btn_restart);
 		this.add(btn_rank);
+		if(Config.user.getUsername().equals("root")) {
+			this.add(btn_admin);
+		}
+	
 		
 	}
 	private void initComponents() {
@@ -47,6 +51,7 @@ public class ButtonPanel extends JPanel implements ActionListener{
 		btn_continue =new JButton("继续游戏");
 		btn_restart =new JButton("重新开始");
 		btn_rank =new JButton("游戏排行");
+		btn_admin =new JButton("后台管理");
 		
 		
 		//给按钮设置单击监听
@@ -54,6 +59,7 @@ public class ButtonPanel extends JPanel implements ActionListener{
 		btn_continue.addActionListener(this);
 		btn_restart.addActionListener(this);
 		btn_rank.addActionListener(this);
+		btn_admin.addActionListener(this);
 	}
 	//初始化面板信息
 	private void initPanel() {
@@ -78,18 +84,35 @@ public class ButtonPanel extends JPanel implements ActionListener{
 		if(e.getSource()==btn_rank) {
 			gameRank();
 		}
+		if(e.getSource()==btn_admin) {
+			gameAdmin();
+		}
 		
 	}
 	
+	private void gameAdmin() {
+		// TODO Auto-generated method stub
+		gamePause();
+		snakeFrame.snakePanel.player.close();
+		 try {
+				Runtime.getRuntime().exec(
+						 "cmd   /c   start   http://localhost/snakegame/welcome.html ");
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		
+	}
+
 	//游戏排行
 	private void gameRank() {
 		// TODO Auto-generated method stub
 		
 		//暂停游戏
 		gamePause();
-		
+		snakeFrame.setVisible(false);
 		//打开排行窗口
-		new RankFrame();
+		new RankFrame(snakeFrame);
 		
 		
 		

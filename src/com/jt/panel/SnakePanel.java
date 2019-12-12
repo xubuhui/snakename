@@ -31,7 +31,7 @@ public class SnakePanel extends JPanel implements KeyListener{
 	SnakeThread SnakeThread=new SnakeThread();//创建贪吃蛇移动的对象
 
 	Font font=new Font("黑体",Font.BOLD,30);//字体对象
-	Image bg_game=ImageUtil.getImage("img/bg_game.jpg");
+	Image bg_game=ImageUtil.getImage("img/bgc2.jpg");
 	int speed=400;
 	public static Player player = null;
 	
@@ -104,7 +104,7 @@ public class SnakePanel extends JPanel implements KeyListener{
 				playM();
 			}).start();
 			while(Config.isLive) {
-				
+			
 				
 				while(Config.pause) {
 					System.out.println("暂停");
@@ -138,10 +138,10 @@ public class SnakePanel extends JPanel implements KeyListener{
 				//重绘
 				repaint();
 			}
-			
+
 			if(!Config.isLive) {
-				
-				JOptionPane.showMessageDialog(SnakePanel.this, "游戏结束", "消息", JOptionPane.INFORMATION_MESSAGE);
+				player.close();
+				JOptionPane.showMessageDialog(SnakePanel.this, "游戏结束\n"+Config.user.getUsername()+"的得分是："+snake.getScore(), "消息", JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
 	
@@ -161,21 +161,11 @@ public class SnakePanel extends JPanel implements KeyListener{
 	
 	public void playM() {
 		try {
-			//声明一个File对象
 			File mp3 = new File("bgm/DV.mp3");
-			
-			//创建一个输入流
 			FileInputStream fileInputStream = new FileInputStream(mp3);
-			
-			//创建一个缓冲流
 			BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
-			
-			//创建播放器对象，把文件的缓冲流传入进去
 			player = new Player(bufferedInputStream);
-			
-			//调用播放方法进行播放
 			player.play();
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
