@@ -29,7 +29,7 @@ public class LoginPanel extends JPanel implements ActionListener{
 	
 	//定义需要的组件属性
 	Image bg_login;//背景图片
-	JLabel lbl_username,lbl_passord,lbl_gh,lbl_theme;//用户名，密码,github
+	JLabel lbl_username,lbl_passord,lbl_gh,lbl_theme,lbl;//用户名，密码,github
 	JTextField tf_username;//用户名
 	JPasswordField pf_password;//密码框
 	JButton btn_login;
@@ -103,7 +103,7 @@ public class LoginPanel extends JPanel implements ActionListener{
 				super.mouseClicked(e);
 				 try {
 					Runtime.getRuntime().exec(
-							 "cmd   /c   start   https://github.com/xubuhui/snakename ");
+							 "cmd   /c   start   https://github.com/xubuhui/snakename");
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
