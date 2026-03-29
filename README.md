@@ -1,40 +1,53 @@
-## 贪吃蛇功能
-#### 1.管理类————>很多类————>类的功能不同
+# SnakeName - Java 游戏项目
 
-根据类的功能不同，将相同功能的类放到同一个包中
+一个基于 Java 的贪吃蛇游戏。
 
-窗体类————>com.jt.frame包
+## 📋 项目简介
 
-面板类————>com.jt.panel包
+SnakeName 是一个经典的贪吃蛇游戏实现，使用 Java 开发，支持图形化界面。
 
-对数据库表操作类————>com.jt.dao包
+## 🛠️ 技术栈
 
-实体类————>com.jt.po包
+- **语言**: Java
+- **图形库**: Swing/AWT
+- **游戏引擎**: 自定义
 
-工具类(数据库工具类...)————>com.jt.util包
+## 📦 安装
 
-#### 2.创建数据库snakegame
+```bash
+git clone https://github.com/xubuhui/snakename.git
+cd snakename
+javac *.java
+```
 
-用户表user
+## 🚀 使用
 
-排行表rank   主键id(自增)、分数、时间、用户id
+```bash
+java SnakeGame
+```
 
-#### 3.创建登录界面
+## 🎮 游戏规则
 
-创建登录界面的窗体类LoginFrame(com.jt.frame)
+- 使用方向键控制蛇的移动
+- 吃到食物增加长度
+- 不能撞到墙壁或自己
+- 分数越高越好
 
-设置图标————>Image————>ImageIcon————>getImage()
+## 📊 功能
 
-创建用于获取图片的工具类ImageUtil(com.jt.util)
+- ✅ 经典贪吃蛇玩法
+- ✅ 实时分数显示
+- ✅ 难度调整
+- ✅ 游戏暂停/继续
 
-创建登录界面的面板类LoginPanel(com.jt.panel)
+## 📄 License
 
-根据用户名及密码对user表查询jdbc
+MIT License
 
-对user表的操作————>UserDao
+## 👤 作者
 
-对rank表的操作————>RankDao
+xubuhui
 
+---
 
-
-blog地址 <https://xubuhui.coding.me/>
+**最后更新**: 2026-03-29
